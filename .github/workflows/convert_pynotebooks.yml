@@ -1,0 +1,52 @@
+name: Convert .py Notebooks to .ipynb Notebooks
+
+# Trigger the workflow on pushes to the main branch, but only if .py files are changed
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'colabs/**/*.py'
+  workflow_dispatch:  # Allows you to manually trigger the workflow if needed
+
+permissions:
+  contents: write  # Grants permission to push changes back to the repo
+
+jobs:
+  convert-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Jupytext
+        run: pip install jupytext
+
+      - name: Convert .py files to .ipynb
+        run: |
+          # Find all .py files in the examples folder and convert them
+          # --update preserves existing cell metadata if the notebook already exists
+          jupytext --to notebook --update colabs/*.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add all .ipynb files (force add in case they are ignored by .gitignore)
+          git add colabs/*.ipynb
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-generate .ipynb notebooks from scripts [skip ci]"
+            git push
+          fi
