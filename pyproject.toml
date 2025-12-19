@@ -4,7 +4,7 @@
 name = "strategicwm"
 description = "StrategicWM is a library for generating strategic world models from natural language descriptions."
 readme = "README.md"
-requires-python = ">=3.8, <=3.10"
+requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [{name = "strategicwm authors", email="strategic-wm@google.com"}]
 classifiers = [  # List of https://pypi.org/classifiers/
