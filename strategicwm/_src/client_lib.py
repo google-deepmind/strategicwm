@@ -86,8 +86,15 @@ class HttpErrorRetriable(errors.HttpError):
             f"{self.original_http_error.args[0]}")
 
 
+RETRIABLE_EXCEPTIONS = (
+    HttpErrorRetriable,
+    genai.errors.ServerError,
+    genai.errors.APIError,
+)
+
+
 @retry.retry(
-    exceptions=HttpErrorRetriable,
+    exceptions=RETRIABLE_EXCEPTIONS,
     tries=10,
     delay=10,
     max_delay=60,
