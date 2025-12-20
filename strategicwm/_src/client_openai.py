@@ -75,7 +75,7 @@ class OpenAIClient:
         self._client = openai.OpenAI(api_key=self.api_key)
     
     @property
-    def client(self) -> "openai.OpenAI":
+    def client(self):
         """Returns the underlying OpenAI client."""
         return self._client
 

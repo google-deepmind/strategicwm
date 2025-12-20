@@ -75,7 +75,7 @@ class AnthropicClient:
         self._client = anthropic.Anthropic(api_key=self.api_key)
     
     @property
-    def client(self) -> "anthropic.Anthropic":
+    def client(self):
         """Returns the underlying Anthropic client."""
         return self._client
 

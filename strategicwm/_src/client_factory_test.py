@@ -107,16 +107,40 @@ class CreateClientTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             client_factory.create_client("unknown", api_key="test")
 
-    @mock.patch("strategicwm._src.client_factory.genai")
-    def test_creates_gemini_client(self, mock_genai):
+    def test_creates_gemini_client(self):
         """Test that Gemini client is created correctly."""
         try:
-            client, query_fn = client_factory.create_client(
-                "gemini", api_key="test-key"
-            )
-            mock_genai.Client.assert_called_once_with(api_key="test-key")
+            with mock.patch("google.genai.Client") as mock_client:
+                client, query_fn = client_factory.create_client(
+                    "gemini", api_key="test-key"
+                )
+                mock_client.assert_called_once_with(api_key="test-key")
         except ImportError:
             self.skipTest("google-genai package not installed")
+
+    def test_creates_openai_client(self):
+        """Test that OpenAI client is created correctly."""
+        try:
+            with mock.patch("openai.OpenAI"):
+                client, query_fn = client_factory.create_client(
+                    "openai", api_key="test-key"
+                )
+                self.assertIsNotNone(client)
+                self.assertIsNotNone(query_fn)
+        except ImportError:
+            self.skipTest("openai package not installed")
+
+    def test_creates_anthropic_client(self):
+        """Test that Anthropic client is created correctly."""
+        try:
+            with mock.patch("anthropic.Anthropic"):
+                client, query_fn = client_factory.create_client(
+                    "anthropic", api_key="test-key"
+                )
+                self.assertIsNotNone(client)
+                self.assertIsNotNone(query_fn)
+        except ImportError:
+            self.skipTest("anthropic package not installed")
 
 
 if __name__ == "__main__":
