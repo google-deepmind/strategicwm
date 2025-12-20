@@ -20,7 +20,7 @@ dependencies = [
     "ipython",
     "beautifulsoup4",
     "etils",
-    "google-generativeai",
+    "google-genai",
     "google-api-python-client",
     "ipywidgets",
     "matplotlib",
