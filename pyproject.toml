@@ -28,6 +28,7 @@ dependencies = [
     "numpy",
     "open-spiel",
     "pydantic",
+    "pydantic-settings",
     "pyvis",
     "retry",
     "tqdm",

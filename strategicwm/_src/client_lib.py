@@ -25,6 +25,7 @@ from googleapiclient import errors
 import retry
 
 
+from strategicwm._src import config
 from strategicwm._src import logging_utils
 
 Client = genai.Client
@@ -91,10 +92,10 @@ class HttpErrorRetriable(errors.HttpError):
 
 @retry.retry(
     exceptions=HttpErrorRetriable,
-    tries=10,
-    delay=10,
-    max_delay=60,
-    backoff=2,
+    tries=config.settings.RETRY_TRIES,
+    delay=config.settings.RETRY_DELAY,
+    max_delay=config.settings.RETRY_MAX_DELAY,
+    backoff=config.settings.RETRY_BACKOFF,
 )
 def generate_with_retry(
     client: Client, model: str, prompt_text: str
