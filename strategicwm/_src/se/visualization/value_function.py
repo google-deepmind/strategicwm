@@ -52,13 +52,15 @@ def plot_value_functions(
       sig = np.array([stds[node][pl] for node in path["node_sequence"]])
       alpha = (path["prob"] - prob_min) / prob_ptp
       if pl == 0:
-        percent = f"{100 * path["prob"]:.1f}"
+        path_prob = path["prob"]
+        leaf_id = path["leaf_id"]
+        percent = f"{100 * path_prob:.1f}"
         axs[pl].plot(
             range(len(mu)),
             mu,
             "--o",
             alpha=alpha,
-            label=f"({percent}%): {path["leaf_id"]}",
+            label=f"({percent}%): {leaf_id}",
         )
       else:
         axs[pl].plot(range(len(mu)), mu, "--o", alpha=alpha)
