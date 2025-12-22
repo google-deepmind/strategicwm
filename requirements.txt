@@ -58,6 +58,8 @@ google-auth==2.43.0
     #   google-generativeai
 google-auth-httplib2==0.2.1
     # via google-api-python-client
+google-colab==1.0.0
+    # via strategicwm (pyproject.toml)
 google-generativeai==0.8.5
     # via strategicwm (pyproject.toml)
 googleapis-common-protos==1.72.0

@@ -20,6 +20,7 @@ dependencies = [
     "etils[ecolab]",
     "google-genai",
     "google-api-python-client",
+    "google-colab",
     "importlib_resources",
     "ipython",
     "ipywidgets",
