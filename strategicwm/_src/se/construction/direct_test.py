@@ -14,22 +14,13 @@
 
 """Tests the functionality of the one-shot game tree construction method."""
 
-import importlib
 import json
 from unittest import mock
 
 from absl.testing import absltest
 import networkx as nx
 
-import strategicwm._src.client_lib  # pylint: disable=unused-import
 from strategicwm._src.se.construction import direct
-
-# Conditionally set mock path
-try:
-  importlib.import_module("strategicwm._src.client_lib")
-  _CLIENT_LIB_MOCK_PATH = "strategicwm._src.client_lib.query_llm"
-except ImportError:
-  _CLIENT_LIB_MOCK_PATH = "strategicwm.client_lib.query_llm"
 
 sample_json_tree = {
     "game_description": "Test Game",
@@ -194,7 +185,14 @@ class DirectFromLlmTest(absltest.TestCase):
   def setUp(self):
     super().setUp()
     self.params_b = {"game_description": "Test Game", "max_depth": 2}
-    self.mock_query_llm = self.enter_context(mock.patch(_CLIENT_LIB_MOCK_PATH))
+    try:
+      self.mock_query_llm = self.enter_context(
+          mock.patch("strategicwm._src.client_lib.query_llm")
+      )
+    except (AttributeError, ImportError):
+      self.mock_query_llm = self.enter_context(
+          mock.patch("strategicwm.client_lib.query_llm")
+      )
     self.mock_tree_graph = self.enter_context(mock.patch("networkx.tree_graph"))
     self.mock_tree_graph.return_value = get_sample_graph()
 
