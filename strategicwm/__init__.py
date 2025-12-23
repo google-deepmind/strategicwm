@@ -16,6 +16,7 @@
 
 # pylint: disable=g-importing-member,useless-import-alias
 from strategicwm._src import client_lib
+from strategicwm._src import client_factory
 from strategicwm._src.colab_utils import eval_utils as kuhn_eval_utils
 from strategicwm._src.se import analysis
 from strategicwm._src.se import pyspiel_utils
@@ -24,6 +25,17 @@ from strategicwm._src.se.construction.gardener import Gardener
 from strategicwm._src.se.visualization import annotate
 from strategicwm._src.se.visualization.game_tree import GameTreeVis
 from strategicwm._src.se.visualization.value_function import plot_value_functions
+
+# Optional client imports - only available if the corresponding package is installed
+try:
+    from strategicwm._src import client_openai
+except ImportError:
+    client_openai = None  # type: ignore
+
+try:
+    from strategicwm._src import client_anthropic
+except ImportError:
+    client_anthropic = None  # type: ignore
 # pylint: enable=g-importing-member,useless-import-alias
 
 
@@ -36,6 +48,9 @@ __all__ = (
     "analysis",
     "annotate",
     "client_lib",
+    "client_factory",
+    "client_openai",
+    "client_anthropic",
     "GameTreeVis",
     "Gardener",
     "io",

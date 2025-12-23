@@ -52,6 +52,25 @@ dev = [
     "pyink",
 ]
 
+# OpenAI client support
+# Installed through `pip install -e .[openai]`
+openai = [
+    "openai>=1.0.0",
+]
+
+# Anthropic client support
+# Installed through `pip install -e .[anthropic]`
+anthropic = [
+    "anthropic>=0.18.0",
+]
+
+# All LLM providers (Gemini is included by default)
+# Installed through `pip install -e .[all-providers]`
+all-providers = [
+    "openai>=1.0.0",
+    "anthropic>=0.18.0",
+]
+
 [tool.pyink]
 # Formatting configuration to follow Google style-guide
 line-length = 80

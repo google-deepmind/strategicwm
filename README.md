@@ -99,14 +99,77 @@ policy derived from the true game tree using
 with a simple game harness that generates moves using raw observations as input.
 This `eval` colab is set up specifically for Kuhn poker.
 
-## Define Your Own Client Interface
+## Using Alternative LLM Providers
 
-This package is set up to use Google LLMs (a.k.a. Gemini models). If you would
-like to use alternative models, there is one file `_src/client_lib.py` that you
-must modify to depend on your desired LLM client. Specifically, the `query_llm`
-method must be updated. Make sure to adhere to the protocols defined at the top
-of the file. Simply clone this repo, modify the code accordingly, and build from
-source.
+This package supports multiple LLM providers out of the box:
+
+### Google Gemini (Default)
+
+```python
+import strategicwm as swm
+
+client = swm.client_lib.Client(api_key="your-google-api-key")
+model_id = "gemini-1.5-pro"
+```
+
+### OpenAI GPT
+
+First, install the OpenAI optional dependency:
+
+```bash
+pip install strategicwm[openai]
+```
+
+Then use the OpenAI client:
+
+```python
+import strategicwm as swm
+
+client = swm.client_openai.OpenAIClient(api_key="your-openai-api-key")
+model_id = "gpt-4"
+```
+
+### Anthropic Claude
+
+First, install the Anthropic optional dependency:
+
+```bash
+pip install strategicwm[anthropic]
+```
+
+Then use the Anthropic client:
+
+```python
+import strategicwm as swm
+
+client = swm.client_anthropic.AnthropicClient(api_key="your-anthropic-api-key")
+model_id = "claude-3-5-sonnet-20241022"
+```
+
+### Using the Client Factory
+
+For a unified interface across providers, use the client factory:
+
+```python
+import strategicwm as swm
+
+# Create client for any provider
+client, query_fn = swm.client_factory.create_client(
+    provider="openai",  # or "gemini", "anthropic"
+    api_key="your-api-key",
+)
+
+# Get the default model for a provider
+model_id = swm.client_factory.get_default_model("openai")
+```
+
+### Install All Providers
+
+To install support for all LLM providers at once:
+
+```bash
+pip install strategicwm[all-providers]
+```
 
 ## References
 
