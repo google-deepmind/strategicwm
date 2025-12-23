@@ -20,10 +20,9 @@
 #
 # *Note:* Read logs with `print(pathlib.Path("gardener.log").read_text())`
 #
-# [**[GitHub source]**](https://github.com/google/strategicwm) &nbsp;
-# [**[API docs]**](https://google.github.io/strategicwm/) &nbsp;
+# [**[GitHub source]**](https://github.com/google-deepmind/strategicwm) &nbsp;
 # [**[PyPI package]**](https://pypi.org/project/strategicwm/) &nbsp;
-# [**[Colab example]**](https://colab.research.google.com/github/google/strategicwm/blob/main/colabs/transplant.ipynb)
+# [**[Colab example]**](https://colab.research.google.com/github/google-deepmind/strategicwm/blob/main/colabs/transplant.ipynb)
 
 # %% [markdown]
 # ## Setup

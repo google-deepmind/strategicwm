@@ -18,10 +18,9 @@
 # -->
 # # strategicwm: Evaluate a policy derived from a Strategic World Model
 #
-# [**[GitHub source]**](https://github.com/google/strategicwm) &nbsp;
-# [**[API docs]**](https://google.github.io/strategicwm/) &nbsp;
+# [**[GitHub source]**](https://github.com/google-deepmind/strategicwm) &nbsp;
 # [**[PyPI package]**](https://pypi.org/project/strategicwm/) &nbsp;
-# [**[Colab example]**](https://colab.research.google.com/github/google/strategicwm/blob/main/colabs/cultivate.ipynb)
+# [**[Colab example]**](https://colab.research.google.com/github/google-deepmind/strategicwm/blob/main/colabs/cultivate.ipynb)
 
 # %% [markdown]
 # ## Setup

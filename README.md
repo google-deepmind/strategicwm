@@ -99,6 +99,13 @@ policy derived from the true game tree using
 with a simple game harness that generates moves using raw observations as input.
 This `eval` colab is set up specifically for Kuhn poker.
 
+You should even be able to open the .ipynb notebooks directly from GitHub. Just
+add a cell at the top and run the following to get running:
+
+```bash
+!pip install strategicwm
+```
+
 ## Define Your Own Client Interface
 
 This package is set up to use Google LLMs (a.k.a. Gemini models). If you would
