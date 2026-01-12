@@ -20,7 +20,7 @@
 #
 # [**[GitHub source]**](https://github.com/google-deepmind/strategicwm) &nbsp;
 # [**[PyPI package]**](https://pypi.org/project/strategicwm/) &nbsp;
-# [**[Colab example]**](https://colab.research.google.com/github/google-deepmind/strategicwm/blob/main/colabs/cultivate.ipynb)
+# [**[Colab example]**](https://colab.research.google.com/github/google-deepmind/strategicwm/blob/main/colabs/eval.ipynb)
 
 # %% [markdown]
 # ## Setup
