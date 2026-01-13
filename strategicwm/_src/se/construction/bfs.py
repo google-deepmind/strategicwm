@@ -22,7 +22,10 @@ from typing import Union
 import networkx as nx
 import numpy as np
 
+from strategicwm._src import logging_utils
 from strategicwm._src.se.construction import io
+
+_LOGGER = logging_utils.get_logger(__name__)
 from strategicwm._src.se.state import state as s
 
 import tqdm.auto as tqdm
@@ -282,7 +285,7 @@ def bfs(
       f"Starting async BFS (per child generation) with {num_workers} workers..."
   )
   if verbose:
-    print(msg, flush=True)
+    _LOGGER.info(msg)
   if logger:
     logger.info(msg)
   if params:
@@ -332,7 +335,7 @@ def bfs(
           node = future.result()
           msg = f"Adding node's children to queue: {node.history_str()}"
           if verbose:
-            print(msg, flush=True)
+            _LOGGER.info(msg)
           if logger:
             logger.info(msg)
           nodes_visited_count += 1
@@ -358,7 +361,7 @@ def bfs(
               f" generated an exception during thread execution: {exc}"
           )
           if verbose:
-            print(msg, flush=True)
+            _LOGGER.error(msg)
           if logger:
             logger.error(msg)
 
@@ -369,7 +372,7 @@ def bfs(
       f"Total nodes visited: {nodes_visited_count}."
   )
   if verbose:
-    print(msg, flush=True)
+    _LOGGER.info(msg)
   if logger:
     logger.info(msg)
   if pbar_nodes:
