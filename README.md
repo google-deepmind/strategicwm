@@ -106,6 +106,17 @@ add a cell at the top and run the following to get running:
 !pip install strategicwm
 ```
 
+The fastest way to build out your own *strategic world model* and start thinking
+like a game theorist is to
+1) Go to [aistudio.google.com](https://aistudio.google.com) and get a (free tier) API key
+2) Click on the [colabs/transplant.ipynb](https://github.com/google-deepmind/strategicwm/blob/main/colabs/transplant.ipynb) colab in GitHub
+3) Click on [Colab example](https://colab.research.google.com/github/google-deepmind/strategicwm/blob/main/colabs/transplant.ipynb) to open up a free Google colab sandbox
+4) Add a cell to the top and run `!pip install strategicwm`
+5) Run the subsequent cells and enter your API key into the `api_key` field
+6) Describe your strategic scenario in the `game_description` field
+7) Run the remaining cells (skipping the save/load game tree cells if you wish)
+8) Done! Check out your game tree & value function plots for insights!
+
 ## Define Your Own Client Interface
 
 This package is set up to use Google LLMs (a.k.a. Gemini models). If you would
