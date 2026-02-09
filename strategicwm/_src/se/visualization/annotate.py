@@ -1,4 +1,4 @@
-# Copyright 2025 The strategicwm Authors.
+# Copyright 2026 The strategicwm Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -283,11 +283,13 @@ def collect_node_edge_data(
     else:
       name = name_descrip
       description = "NA"
+    current_player_id_name = f"P{current_player}: {name}"
     node_data = {
         "type": "Decision Node",
         "current_player": current_player,
-        "current_player name": name,
-        "current_player description": description,
+        "current_player_name": name,
+        "current_player_id_name": current_player_id_name,
+        "current_player_description": description,
         "state": world_str,
         "info_state": info_str,
     }

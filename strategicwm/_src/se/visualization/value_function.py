@@ -1,4 +1,4 @@
-# Copyright 2025 The strategicwm Authors.
+# Copyright 2026 The strategicwm Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ def plot_value_functions(
     paths: dict[tuple[str, ...], io.Path],
     values: dict[str, np.ndarray],
     stds: dict[str, np.ndarray],
-    npl: int,
+    players: list[str],
+    title_cutoff: int = 20,
 ):
   """Plot value functions along rollouts for a game.
 
@@ -32,13 +33,15 @@ def plot_value_functions(
     paths: Dictionary mapping sequences of node to Path (seq, prob, leaf_id).
     values: Dictionary of values for each node in the game tree.
     stds: Dictionary of standard errors for each node in the game tree.
-    npl: Number of players.
+    players: List of player names (strings).
+    title_cutoff: Maximum length of player name before truncating in title.
   Returns:
     fig: Matplotlib figure object.
     axs: Matplotlib axes objects.
   """
   fs = 16
 
+  npl = len(players)
   fig, axs = plt.subplots(ncols=npl, figsize=(6 * npl, 6))
 
   paths_sorted = sorted(paths.values(), key=lambda x: x["prob"], reverse=True)
@@ -69,7 +72,10 @@ def plot_value_functions(
       )
 
   for pl in range(npl):
-    axs[pl].set_title(f"Player {pl}", fontsize=fs)
+    player_name = players[pl]
+    if len(player_name) > title_cutoff:
+      player_name = player_name[:title_cutoff] + "..."
+    axs[pl].set_title(f"P{pl}: {player_name}", fontsize=fs)
     axs[pl].set_xlabel("Step", fontsize=fs)
     axs[pl].set_ylabel("Value", fontsize=fs)
     axs[pl].tick_params(axis="both", which="major", labelsize=fs)

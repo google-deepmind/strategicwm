@@ -1,4 +1,4 @@
-# Copyright 2025 The strategicwm Authors.
+# Copyright 2026 The strategicwm Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -706,7 +706,8 @@ if pyspiel_game:
       rollouts,
       values,
       stds,
-      pyspiel_game.params["num_players"],
+      players=game_tree["player_descriptions"],
+      title_cutoff=20,
   )
 
 plt.show()
@@ -784,7 +785,12 @@ def on_leaf_selection_change(change):
           else:
             markdown_text = _display_details(
                 n,
-                props=["info_state", "action_idx", "action_str"],
+                props=[
+                    "current_player_id_name",
+                    "info_state",
+                    "action_idx",
+                    "action_str",
+                ],
                 next_node=n_next,
                 show_prop_label=True,
                 step=step
