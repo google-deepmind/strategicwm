@@ -29,7 +29,7 @@ from strategicwm._src.se.visualization.value_function import plot_value_function
 
 # A new PyPI release will be pushed every time `__version__` is increased.
 # When changing this, also update the CHANGELOG.md.
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 __all__ = (

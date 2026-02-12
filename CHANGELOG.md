@@ -23,6 +23,10 @@ To release a new version (e.g. from `1.0.0` -> `2.0.0`):
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-02-12
+
+* Updated visualization
+
 ## [0.1.1] - 2025-12-23
 
 * First usable package release
@@ -31,6 +35,7 @@ To release a new version (e.g. from `1.0.0` -> `2.0.0`):
 
 * Initial release
 
-[Unreleased]: https://github.com/google-deepmind/strategicwm/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/google-deepmind/strategicwm/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/google-deepmind/strategicwm/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/google-deepmind/strategicwm/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/google-deepmind/strategicwm/releases/tag/v0.1.0
