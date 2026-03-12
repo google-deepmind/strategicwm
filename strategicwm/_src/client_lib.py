@@ -25,7 +25,11 @@ from googleapiclient import errors
 import retry
 
 
+from strategicwm._src import config
+from strategicwm._src import logging_utils
+
 Client = genai.Client
+_LOGGER = logging_utils.get_logger(__name__)
 
 
 class LLMCall(Protocol):
@@ -88,10 +92,10 @@ class HttpErrorRetriable(errors.HttpError):
 
 @retry.retry(
     exceptions=HttpErrorRetriable,
-    tries=10,
-    delay=10,
-    max_delay=60,
-    backoff=2,
+    tries=config.settings.RETRY_TRIES,
+    delay=config.settings.RETRY_DELAY,
+    max_delay=config.settings.RETRY_MAX_DELAY,
+    backoff=config.settings.RETRY_BACKOFF,
 )
 def generate_with_retry(
     client: Client, model: str, prompt_text: str
@@ -136,7 +140,7 @@ def query_llm(
       f" '{prompt_text[:50]}...' (Process ID: {os.getpid()})"
   )
   if verbose:
-    print(msg, flush=True)
+    _LOGGER.info(msg)
   if logger:
     logger.info(msg)
   try:
@@ -162,7 +166,7 @@ def query_llm(
             + f"Model response blocked. Reason: {block_reason_msg}",
         )
         if verbose:
-          print(err_msg, flush=True)
+          _LOGGER.error(err_msg)
         if logger:
           logger.error(err_msg)
         raise ValueError(err_msg)
@@ -173,7 +177,7 @@ def query_llm(
           " blocked due to safety settings."
       )
       if verbose:
-        print(err_msg, flush=True)
+        _LOGGER.error(err_msg)
       if logger:
         logger.error(err_msg)
       raise ValueError(err_msg)
@@ -184,7 +188,7 @@ def query_llm(
         f" response: {e}"
     )
     if verbose:
-      print(err_msg, flush=True)
+      _LOGGER.error(err_msg)
     if logger:
       logger.error(err_msg)
     raise ValueError(err_msg) from e

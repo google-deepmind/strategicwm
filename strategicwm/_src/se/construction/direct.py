@@ -25,7 +25,10 @@ import numpy as np
 import pydantic
 
 from strategicwm._src import client_lib
+from strategicwm._src import logging_utils
 from strategicwm._src.se.construction import io
+
+_LOGGER = logging_utils.get_logger(__name__)
 
 from typing_extensions import Annotated
 
@@ -222,9 +225,9 @@ def get_params(game_json: dict[str, Any]) -> io.GameParamsA:
       num_actions = len(game_tree_nx.nodes[node]["legal_actions_string"])
       max_num_distinct_actions = max(max_num_distinct_actions, num_actions)
   if len(players) != num_players:
-    print(
-        f"Warning! Players {players} found in game tree. Mismatch with"
-        f" {num_players} player descriptions."
+    _LOGGER.warning(
+        "Warning! Players %s found in game tree. Mismatch with %s player descriptions.",
+        players, num_players
     )
     num_players = len(players)
   params = io.GameParamsA(
