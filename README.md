@@ -10,7 +10,7 @@
 > The name `strategicwm` (or `swm` for short) stands for *strategic world
 models*.
 
-`swm` uses LLMs to aids users in automating the construction of formal
+`swm` uses LLMs to aid users in automating the construction of formal
 **strategic world models**, e.g., game trees, simply from natural language
 descriptions. Utilities are provided for **visualizing** and performing
 **game-theoretic analysis** of these multi-agent interactions.
