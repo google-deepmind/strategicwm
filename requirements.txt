@@ -174,7 +174,7 @@ pyvis==0.3.2
     # via strategicwm (pyproject.toml)
 pyyaml==6.0.3
     # via ml-collections
-requests==2.32.5
+requests==2.33.0
     # via google-api-core
 retry==0.9.2
     # via strategicwm (pyproject.toml)
