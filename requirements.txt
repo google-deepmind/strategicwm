@@ -76,7 +76,7 @@ httplib2==0.31.0
     # via
     #   google-api-python-client
     #   google-auth-httplib2
-idna==3.11
+idna==3.15
     # via requests
 importlib-resources==6.4.0
     # via strategicwm (pyproject.toml)
